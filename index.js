@@ -1,6 +1,5 @@
 // Load fs package for read/write
 const fs = require("fs");
-const readme = "README.md";
 
 module.exports = () => {
     // remove auto-loaded args
@@ -26,10 +25,12 @@ module.exports = () => {
     
   }
 
-  function create_readme(){
+
+  const create_readme = () =>{ 
     fs.writeFile("README.md", pname ,(err) =>{
       if(err) throw err;
       else{console.log("Created new README.md");}
-    })
+    });
   }
+
 }
