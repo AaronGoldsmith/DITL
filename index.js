@@ -1,36 +1,37 @@
 // Load fs package for read/write
 const fs = require("fs");
+var inquirer = require('inquirer');
+const args = process.argv.slice(2);
 
-module.exports = () => {
-    // remove auto-loaded args
-  let args = process.argv.slice(2);
-  let opt = args[0] || "-n";
-  let pname = args[1] || "Project Title"
-
-  // default case
-  if(args.length == 0){
-    create_readme();
-  }
-  else{
-    // delete existing README & create new
-    if(opt === "-r" || opt === "--replace"){
-      fs.unlink('README.md', (err) => { 
-        if(err) throw err;
-        console.log('README.md deleted')
-      });
-    }
-    else if( opt === "-n" || opt === "--new"){
-      create_readme();
-    }
-    
-  }
-
-
-  const create_readme = () =>{ 
-    fs.writeFile("README.md", pname ,(err) =>{
-      if(err) throw err;
-      else{console.log("Created new README.md");}
-    });
-  }
-
+module.exports = () =>
+{
+  
+   getArgs();
 }
+
+const getArgs = () => {
+   // remove auto-loaded args
+   let opt = args[0] || "-n"; 
+   if (args.length == 0) {
+     create_readme();
+   }
+   else if (opt === "-r" || opt === "--replace") {
+     fs.unlink('README.md', (err) =>
+     {
+       if (err) throw err;
+       console.log('README.md deleted')
+     });
+   }
+}
+
+function create_readme(name)
+{
+  let pname = name || " <Project Title>"
+  fs.writeFile("README.md", "#" + pname, (err) =>
+  {
+    if (err) throw err;
+    else { console.log("Created new README.md"); }
+  });
+}
+
+
