@@ -1,7 +1,7 @@
 // Load the NPM Package inquirer
 var inquirer = require("inquirer");
 
-let document = {};
+let document = {text: []};
 
 var questHeaders = [
   {
@@ -28,6 +28,7 @@ var questHeaders = [
 ]
 
 
+
 function ask(section){
   let text = [];
   inquirer.prompt([
@@ -48,28 +49,45 @@ function ask(section){
          ask(section);
        }
        else{
-         return text.join("\n*")
+         let summary = text.join("\n*");
+         return Section(section,summary);
         }
-  });
+  })
+  .catch((err) => { console.log(err)});
 }
 
-function fillSections(sections){
-
-  sections.map( (section,i) => {
-    return new Promise(ask(section[i]));
-  });
+function Section(header,text){
+  this.header = header;
+  this.text = text;
+  this.render = function(){
+    return "##" + header + "\n" + text;
+  }
 }
+/* async function getProcessedData(url) {
+  let v;
+  try {
+    v = await downloadData(url); 
+  } catch(e) {
+    v = await downloadFallbackData(url);
+  }
+  return processDataInWorker(v);
+} */
 
-function startPrompts(){
+
+function getPrompts(){
 // starts all of the inquirer prompts
   inquirer.prompt(questHeaders).then(answers => {
     document.title = answers.projName.split(' ').join('-')
     document.description = answers.purpose
     document.sections = answers.sections;
   }).then(() => {
-   fillSections(document.sections);
-    
+    console.log(document.text);
+    return ;
   })
+  .catch((err)=>{console.log(err)})
+
 }
-startPrompts();
+if(getPrompts()){
+  document.sections.forEach(section => document.text.push(ask(section)));
+}
 
