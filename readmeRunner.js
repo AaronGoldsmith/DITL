@@ -1,10 +1,16 @@
 // Load the NPM Package inquirer
 var inquirer = require("inquirer");
-var questions = [
+
+let document = {};
+
+var questHeaders = [
   {
     type: "input",
     name: "projName",
-    message: "Project Title: "
+    message: "Project Title: ",
+    default: function() {
+      return '<TITLE>';
+    }
   },
 
   {
@@ -17,20 +23,53 @@ var questions = [
     type: "checkbox",
     name: "sections",
     message: "Which sections should be included",
-    choices: ["Installation", "Technologies", "Examples", "Usage", "Configuration", "Contributing", "Liscense"]
+    choices: ["Installation", "Technologies", "Examples", "Usage", "Configuration", "Contributing", "License"]
   }
 ]
 
 
-// Created a series of questions
-var headings = [];
+function ask(section){
+  let text = [];
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'content',
+      message: 'Text content'
+    },
+    {
+      type: 'confirm',
+      name: 'addMore',
+      message: `Continue adding to <${section}> section?`,
+      default: false
+    }
+  ]).then(answer => {
+       text.push(answer.content);
+       if(answer.addMore){
+         ask(section);
+       }
+       else{
+         return text.join("\n*")
+        }
+  });
+}
 
-inquirer.prompt(questions).then(answers => {
-  headings.push(answers.projName);
-  headings.push(answers.purpose);
+function fillSections(sections){
 
-  if(answers.sections.length>0){
+  sections.map( (section,i) => {
+    return new Promise(ask(section[i]));
+  });
+}
 
-  }
-  headings.push(answers.sections)
-})
+function startPrompts(){
+// starts all of the inquirer prompts
+  inquirer.prompt(questHeaders).then(answers => {
+    document.title = answers.projName.split(' ').join('-')
+    document.description = answers.purpose
+    document.sections = answers.sections;
+  }).then(() => {
+   fillSections(document.sections);
+    
+  })
+}
+startPrompts();
+
