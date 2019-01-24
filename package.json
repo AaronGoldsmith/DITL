@@ -1,6 +1,7 @@
 {
     "name": "ditl",
     "version": "0.0.1",
+    "author": "Aaron Goldsmith",
     "description": "Tell us how awesome we are.",
     "preferGlobal": true,
     "bin": {
