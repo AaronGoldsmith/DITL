@@ -15,8 +15,13 @@ You need to be able to run **npm scripts**
  $  npm i --save-dev
 ```
 
-If you want to install it so you can use  `ditl -n [your sweet day]` from anywhere on your computer,
-you can link the node package to your local node_modules directory
+If you want to install the package to run it anywhere on your computer,
+>>  `ditl -n [your sweet day]` 
+or
+>>  `ditl finished this stuff`
+
+will run ditl from anywhere on your computer,
+you can link the node package so your local node_modules directory
 ```sh
 $  npm link
 ```
