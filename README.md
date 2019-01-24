@@ -1,5 +1,10 @@
 # DITL
 
+### A backstory:
+I started making a similar project in 2018 and never finished it.
+
+I ripped out a bunch of that code to make this beautiful beast
+
 ### Setup:
 You need to be able to run **npm scripts**
 
