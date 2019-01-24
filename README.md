@@ -41,8 +41,7 @@ ditl "im ready to leave for work"
 
 ### NOTES:
 If you don't put your input in quotes, then you lose out on some punctuation.
-(It breaks when you use apostrophes or question marks)
-
+(if you enter in quotes, leave a space between the quotion mark and the text)
 *It does however work entirely the same without using quotes*
 
 ### DEMO:
