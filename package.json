@@ -7,7 +7,6 @@
     "bin": {
         "ditl": "index.js"
     },
-    "author": "Aaron Goldsmith",
     "engines": {
         "node": "*"
     },
