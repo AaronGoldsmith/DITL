@@ -1,23 +1,16 @@
 {
-  "name": "templating-readme",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "ditl": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AaronGoldsmith/templating-readme.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AaronGoldsmith/templating-readme/issues"
-  },
-  "homepage": "https://github.com/AaronGoldsmith/templating-readme#readme",
-  "dependencies": {
-    "moment": "^2.24.0"
-  }
+    "name": "ditl",
+    "version": "0.0.1",
+    "description": "Tell us how awesome we are.",
+    "preferGlobal": true,
+    "bin": {
+        "ditl": "index.js"
+    },
+    "author": "Aaron Goldsmith",
+    "engines": {
+        "node": "*"
+    },
+    "dependencies": {
+        "moment": "^2.24.0"
+    }
 }

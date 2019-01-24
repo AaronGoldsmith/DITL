@@ -1,4 +1,7 @@
+#! /usr/bin/env node
 // Load fs package for read/write
+
+
 const fs = require("fs");
 const moment = require('moment')
 const args = process.argv.slice(2);
@@ -19,11 +22,11 @@ const getArgs = () => {
 
 function noteIt(note,time){
   fs.appendFile("DITL.md", `
-     \n#### ${time}\n
-     \t ${note} \n`,
+     \n#### ${time}\n>${note} \n`,
      null, err => {
        if(err) console.log(err)
       });
+   console.log(`logged at ${time}`)
 }
 
 function makeMyDay(name,day)
