@@ -20,7 +20,7 @@ If you want to install the package to run it anywhere on your computer,
 or
 >>  `ditl finished this stuff`
 
-will run ditl from anywhere on your computer,
+
 you can link the node package so your local node_modules directory
 ```sh
 $  npm link
