@@ -1,37 +1,45 @@
+#! /usr/bin/env node
 // Load fs package for read/write
+
+
 const fs = require("fs");
-var inquirer = require('inquirer');
+const moment = require('moment')
 const args = process.argv.slice(2);
 
-module.exports = () =>
-{
-  
-   getArgs();
-}
 
 const getArgs = () => {
-   // remove auto-loaded args
-   let opt = args[0] || "-n"; 
-   if (args.length == 0) {
-     create_readme();
-   }
-   else if (opt === "-r" || opt === "--replace") {
-     fs.unlink('README.md', (err) =>
-     {
-       if (err) throw err;
-       console.log('README.md deleted')
-     });
+  let opt = args[0];
+  if (opt === '-n') {
+    args.shift();
+    makeMyDay(args.join(' '), moment().format('LL'));
+  }
+  else {
+     let now = moment().format('LT');
+     noteIt(args.join(' '), now)
    }
 }
 
-function create_readme(name)
+
+function noteIt(note,time){
+  fs.appendFile("DITL.md", `
+     \n#### ${time}\n>${note} \n`,
+     null, err => {
+       if(err) console.log(err)
+      });
+   console.log(`logged at ${time}`)
+}
+
+function makeMyDay(name,day)
 {
-  let pname = name || " <Project Title>"
-  fs.writeFile("README.md", "#" + pname, (err) =>
+  let pname = name || "A Day in the life"
+  fs.writeFile("DITL.md", `# ${pname} \n--------\n### ${day}\n`, (err) =>
   {
     if (err) throw err;
-    else { console.log("Created new README.md"); }
+    else { console.log("Created new DITL.md"); }
   });
 }
 
 
+if(getArgs()){
+  console.log("Great!")
+}

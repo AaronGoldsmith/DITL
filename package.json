@@ -1,28 +1,16 @@
 {
-  "name": "readme",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AaronGoldsmith/templating-readme.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bin": {
-    "create-template-readme": "bin/create-template-readme",
-    "outside": "bin/outside"
-  },
-  "bugs": {
-    "url": "https://github.com/AaronGoldsmith/templating-readme/issues"
-  },
-  "homepage": "https://github.com/AaronGoldsmith/templating-readme#readme",
-  "dependencies": {
-    "console.table": "^0.10.0",
-    "inquirer": "^6.2.1"
-  }
+    "name": "ditl",
+    "version": "0.0.1",
+    "description": "Tell us how awesome we are.",
+    "preferGlobal": true,
+    "bin": {
+        "ditl": "index.js"
+    },
+    "author": "Aaron Goldsmith",
+    "engines": {
+        "node": "*"
+    },
+    "dependencies": {
+        "moment": "^2.24.0"
+    }
 }
